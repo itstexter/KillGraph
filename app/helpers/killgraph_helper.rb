@@ -1,0 +1,2 @@
+module KillgraphHelper
+end
