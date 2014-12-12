@@ -38,4 +38,4 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'ruby-lol'
+gem 'ruby-lol', :path => "../ruby-lol"
