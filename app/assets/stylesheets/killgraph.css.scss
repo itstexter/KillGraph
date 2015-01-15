@@ -44,3 +44,20 @@ body {
 		width: 250px;
 	}
 }
+
+.map{
+	background-image: url('/assets/newmap.png');
+	background-position: center 0;
+	background-repeat: no-repeat;
+	margin: 0 auto;
+	position: relative;
+	width: 512px;
+	height: 512px;
+}
+
+.kill{
+	background-image: url('/assets/kill.png');
+	position: absolute;
+	width: 24px;
+	height: 24px;
+}

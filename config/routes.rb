@@ -57,4 +57,5 @@ Rails.application.routes.draw do
   root :to => 'killgraph#index'
 
   get 'killgraph/lookup' => 'killgraph#lookup'
+  get 'killgraph/get_coordinates' => 'killgraph#get_coordinates'
 end
