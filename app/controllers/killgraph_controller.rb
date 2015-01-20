@@ -13,14 +13,12 @@ class KillgraphController < ApplicationController
 	def get_coordinates
 		username = params[:username]
 
-		# Rails.cache.write("key", "avalue");
-		# logger.debug "Rails cache value #{Rails.cache.fetch("key")}"
-		
 		summoner_id = @client.summoner.by_name(username)[0].id
 		matches = @client.match_history.get(summoner_id)['matches']
 
 		kill_events = []
-		matches.first(1).each do |match|
+		logger.debug "matches size is #{matches.length}"
+		matches.each do |match|
 			kill_events += get_kill_events_from_match_id(match["matchId"], summoner_id)
 		end
 
@@ -35,20 +33,33 @@ class KillgraphController < ApplicationController
 	private
 
 	def get_kill_events_from_match_id(match_id, summoner_id)
-		match_data = @client.match.get(match_id, true)
+		logger.debug "getting kills for champion_kills_#{match_id}"
 
-		participant_id = get_participant_id_from_match_data(match_data, summoner_id)
+		champion_kills = Rails.cache.fetch("champion_kills_#{match_id}")
+		if champion_kills.blank?
+			if (true)
+				return []
+			end
 
-		champion_kills = []
-		frames = match_data["timeline"]["frames"]
-		frames.each do |frame|
-			if frame["events"].present?
-				frame["events"].each do |event|
-					if event["eventType"] == CHAMPION_KILL && event["killerId"] == participant_id
-						champion_kills << event
+			match_data = @client.match.get(match_id, true)
+			logger.debug "Missing cache, making new request for champion_kills_#{match_id}"
+			participant_id = get_participant_id_from_match_data(match_data, summoner_id)
+
+			champion_kills = []
+			frames = match_data["timeline"]["frames"]
+			frames.each do |frame|
+				if frame["events"].present?
+					frame["events"].each do |event|
+						if event["eventType"] == CHAMPION_KILL && event["killerId"] == participant_id
+							champion_kills << event
+						end
 					end
-				end
-			end	
+				end	
+			end
+
+			Rails.cache.write("champion_kills_#{match_id}", champion_kills)
+		else 
+			logger.debug "Hit cache for champion_kills_#{match_id}"
 		end
 
 		return champion_kills
