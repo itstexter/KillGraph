@@ -58,4 +58,6 @@ Rails.application.routes.draw do
 
   get 'killgraph/lookup' => 'killgraph#lookup'
   get 'killgraph/get_coordinates' => 'killgraph#get_coordinates'
+  get 'killgraph/get_match_history' => 'killgraph#get_match_history'
+  
 end

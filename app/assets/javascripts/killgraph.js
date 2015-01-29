@@ -25,6 +25,29 @@ var plotKills = function(json) {
 		var position = championKills[i]["position"];
 		plotPoint(position["x"], position["y"]);
 	}
+
+	buildMatchHistory();
+};
+
+var buildMatchHistory = function() {
+	var username = $(".username").data("username");
+	$.ajax({
+		url: "/killgraph/get_match_history",
+		type: "GET",
+		data: {
+			username: username
+		},
+		dataType: "json",
+		success: addMatches
+	});
+};
+
+var addMatches = function(json) {
+	console.log("will start adding matches");
+	console.log(json);
+
+	var html = json["matches_history"];
+	$(".match_history").append(html);
 };
 
 var plotPoint = function(x, y) {

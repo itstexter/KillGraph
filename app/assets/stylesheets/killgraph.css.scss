@@ -4,6 +4,8 @@
 
 $font-family-sans-serif-alt: "Roboto";
 
+/* http://ddragon.leagueoflegends.com/cdn/5.1.1/img/item/ */
+
 body {
 	background-color: black;
 	margin: 0;
@@ -49,10 +51,18 @@ body {
 	background-image: url('/assets/newmap.png');
 	background-position: center 0;
 	background-repeat: no-repeat;
-	margin: 0 auto;
+	float: left;
 	position: relative;
 	width: 512px;
 	height: 512px;
+}
+
+.match_history {
+	background-color: grey;
+	float: left;
+	display: inline-block;
+	height: 512px;
+	width: 512px;
 }
 
 .kill{

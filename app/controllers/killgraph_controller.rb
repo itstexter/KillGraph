@@ -30,6 +30,16 @@ class KillgraphController < ApplicationController
 		render json: json_response
 	end
 
+	def get_match_history
+		username = params[:username]
+
+		json_response = {
+			matches_history: "<h2>Potato</h2>"
+		}
+
+		render json: json_response
+	end
+
 	private
 
 	def get_kill_events_from_match_id(match_id, summoner_id)
@@ -37,7 +47,8 @@ class KillgraphController < ApplicationController
 
 		champion_kills = Rails.cache.fetch("champion_kills_#{match_id}")
 		if champion_kills.blank?
-			if (true)
+			if (false)
+				logger.debug "Hit something easy, get rid of it doofus."
 				return []
 			end
 
