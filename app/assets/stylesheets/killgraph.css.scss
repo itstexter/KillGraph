@@ -71,3 +71,42 @@ body {
 	width: 24px;
 	height: 24px;
 }
+
+.matchBox {
+	margin: 3px;
+	background: white;
+}
+
+.matchLose {
+
+}
+
+.matchWin {
+	background: #b6daf2;
+}
+
+.matchHeader {
+	position: relative;
+	padding: 5px;
+}
+
+.matchBox.matchWin>.matchHeader{
+	background: #a0cfee;
+}
+
+.matchDetails{
+	padding: 5px;
+}
+
+.matchType {
+	width: 300px;
+	display: inline-block;
+}
+
+.matchResult {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	text-align: right;
+}
+

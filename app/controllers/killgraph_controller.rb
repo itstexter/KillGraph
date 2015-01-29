@@ -34,7 +34,7 @@ class KillgraphController < ApplicationController
 		username = params[:username]
 
 		json_response = {
-			matches_history: "<h2>Potato</h2>"
+			matches_history: render_to_string(partial:"killgraph/match_history_row")
 		}
 
 		render json: json_response
