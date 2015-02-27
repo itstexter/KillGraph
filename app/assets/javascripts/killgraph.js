@@ -3,6 +3,7 @@ yScaling = (512/ (14980 - 120));
 
 $(document).ready(function() {
 	var username = $(".username").data("username");
+	$tiphover = $(".tiphover");
 	console.log("username is" + username);
 	$.ajax({
 		url: "/killgraph/get_coordinates",
@@ -48,6 +49,21 @@ var addMatches = function(json) {
 
 	var html = json["matches_history"];
 	$(".match_history").append(html);
+
+	// 
+	$(".tip").mouseover(function(event) {
+		console.log("hoverin");
+		var $target = $(event.target);
+		
+		$tiphover.show();
+		$tiphover.css("bottom", $target.position().top);
+		$tiphover.css("left", $target.position().left);
+		$tiphover.text($target.data("tip-text"));
+	});
+
+	$(".tip").mouseout(function() {
+		$tiphover.hide();
+	});
 };
 
 var plotPoint = function(x, y) {

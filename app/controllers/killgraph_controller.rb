@@ -13,16 +13,16 @@ class KillgraphController < ApplicationController
 	def get_coordinates
 		username = params[:username]
 
-		summoner_id = @client.summoner.by_name(username)[0].id
-		matches = @client.match_history.get(summoner_id)['matches']
+		# summoner_id = @client.summoner.by_name(username)[0].id
+		# matches = @client.match_history.get(summoner_id)['matches']
 
 		kill_events = []
-		logger.debug "matches size is #{matches.length}"
-		matches.each do |match|
-			kill_events += get_kill_events_from_match_id(match["matchId"], summoner_id)
-		end
+		# logger.debug "matches size is #{matches.length}"
+		# matches.first(4).each do |match|
+			# kill_events += get_kill_events_from_match_id(match["matchId"], summoner_id)
+		# end
 
-		puts kill_events
+		# puts kill_events
 
 		json_response = {
 			champion_kills: kill_events
@@ -33,8 +33,20 @@ class KillgraphController < ApplicationController
 	def get_match_history
 		username = params[:username]
 
+		team_1_players = ['ItsTexter', 'ucbStirling', 'TweePop', 'Echennial', 'Lord Derek']
+		team_2_players = ['cinnamondolce', 'elane4lyfe', 'edizzle', 'tayswif', 'Lord Elaine']
+		items = ['item0', 'item1', 'item2', 'item3', 'item4', 'item5']
+
 		json_response = {
-			matches_history: render_to_string(partial:"killgraph/match_history_row")
+			matches_history: render_to_string(partial:"killgraph/match_history_row", 
+											  locals: { summoner_name: 'elainedabest',
+											  			kills: 5, 
+											  			deaths: 3, 
+											  			assists: 17,
+											  			level: 13, 
+											  			items: items,
+											  			team_1_players: team_1_players,
+											  			team_2_players: team_2_players })
 		}
 
 		render json: json_response

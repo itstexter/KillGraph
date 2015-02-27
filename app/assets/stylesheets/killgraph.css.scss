@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $font-family-sans-serif-alt: "Roboto";
-
+$match-height: 150px;
 /* http://ddragon.leagueoflegends.com/cdn/5.1.1/img/item/ */
 
 body {
@@ -62,7 +62,7 @@ body {
 	float: left;
 	display: inline-block;
 	height: 512px;
-	width: 512px;
+	width: 800px;
 }
 
 .kill{
@@ -90,12 +90,13 @@ body {
 	padding: 5px;
 }
 
-.matchBox.matchWin>.matchHeader{
+.matchBox.matchWin > .matchHeader{
 	background: #a0cfee;
 }
 
 .matchDetails{
 	padding: 5px;
+	display: table;
 }
 
 .matchType {
@@ -110,3 +111,80 @@ body {
 	text-align: right;
 }
 
+.matchDetails > div {
+	display: table-cell;
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
+.champPortrait {
+	height: 55px;
+	width: 55px;
+	border-radius: 55px;
+	background-image: url('http://sf.op.gg/images/champions/garen_square_0.png');
+	background-size: 55px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.itemsTrinket {
+	text-align: center;
+}
+
+.itemsTrinket .item {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 5px;
+}
+
+.spell {
+	height: 27px;
+	width: 27px;
+	background-image: url('http://sf.op.gg/images/lol/spell/SummonerSmite.png');
+	background-size: 27px;
+	border-radius: 4px;
+	margin-bottom: 5px;
+}
+
+.miscInfo, .killInfo {
+	text-align: center;
+}
+
+.item {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background-image: url('http://sf.op.gg/images/lol/spell/SummonerSmite.png');
+	background-size: 32px;
+	border-radius: 5px;
+}
+
+.items {
+	width: 105px;
+}
+
+.players {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.player > div {
+	display: inline-block;
+}
+
+.champIcon {
+	width: 16px;
+	height: 16px;
+	background-image: url('http://sf.op.gg/images/champions/garen_square_0.png');
+	background-size: 16px;
+	border-radius: 2px;
+}
+
+.tiphover {
+	color: white;
+	height: 100px;
+	width: 200px;
+	border-radius: 5px;
+	background: purple;
+	position: absolute;
+}

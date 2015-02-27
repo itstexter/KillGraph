@@ -1,3 +1,5 @@
+<% creepScore ||= 1 %>
+
 <div class='matchBox matchWin'>
 	<div class='matchHeader'>
 		<div class='matchType'>
@@ -8,9 +10,62 @@
 		</div>
 	</div>
 	<div class='matchDetails'>
-		Details 
-		<br>
-		Details <br>
-		Details
+		<div class='champInfo'>
+			<div class='champPortrait'>
+			</div>
+			<span><%= summoner_name %></span>
+		</div>
+		<div class='summonerSpells'>
+			<div class='spell tip'>
+			</div>
+			<div class='spell tip'>
+			</div>
+		</div>
+		<div class='killInfo'>
+			<div class='kda'>
+				<span><%= kills %></span>
+				 / 
+				<span><%= deaths %></span>
+				 / 
+				<span><%= assists %></span>
+			</div>
+			<div class='kdaRatio'>
+			<% if deaths == 0 %>
+				<span>Perfect</span>
+			<% else %>
+				<span><%= ((kills + assists) / deaths.to_f).round(2) %></span>
+			<% end %>
+			<span>kda</span>
+			</div>
+		</div>
+		<div class='miscInfo'>
+			<div class='charLevel'>
+				Level <span><%= level %></span>
+			</div>
+			<div class='csStats tip' data-tip-text='Their creepscore is <%= creepScore %>'>
+				<span>CS <%= creepScore %></span>
+			</div>
+
+		</div>
+		<div class='items'>
+			<% items.each do |item| %>
+				<div class='item tip'></div>
+			<% end %>
+		</div>
+		<div class='itemsTrinket'>
+			<div class='item tip'></div>
+			<span>Trinket</span>
+		</div>
+		<div class='teams'>
+			<div class='team players'>
+				Blue Team
+				<%= render partial: 'match_history_team_display', locals: {team_players: team_1_players} %>
+
+			</div>
+			<div class='team players'>
+				Purple Team
+				<%= render partial: 'match_history_team_display', locals: {team_players: team_2_players} %>
+			</div>
+		</div>
 	</div>
 </div>
