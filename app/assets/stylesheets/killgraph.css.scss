@@ -180,11 +180,35 @@ body {
 	border-radius: 2px;
 }
 
+.topCaret {
+	height: 0px;
+	width: 0px;
+	border: 10px solid purple;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-top-width: 0;
+	margin: 0 auto;
+}
+
+.bottomCaret {
+	height: 0px;
+	width: 0px;
+	border: 10px solid purple;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-bottom-width: 0;
+	margin: 0 auto;
+}
+
 .tiphover {
 	color: white;
-	height: 100px;
-	width: 200px;
+	padding: 5px;
+	max-width: 300px;
 	border-radius: 5px;
 	background: purple;
+}
+
+.tiphoverContainer {
 	position: absolute;
+	z-index: 10
 }

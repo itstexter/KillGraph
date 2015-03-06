@@ -3,7 +3,7 @@ yScaling = (512/ (14980 - 120));
 
 $(document).ready(function() {
 	var username = $(".username").data("username");
-	$tiphover = $(".tiphover");
+	$tiphover = $(".tiphoverContainer");
 	console.log("username is" + username);
 	$.ajax({
 		url: "/killgraph/get_coordinates",
@@ -49,25 +49,38 @@ var addMatches = function(json) {
 
 	var html = json["matches_history"];
 	$(".match_history").append(html);
+	$(".match_history").append(html);
+	$(".match_history").append(html);
+	$(".match_history").append(html);
+
 
 	// 
 	$(".tip").mouseover(function(event) {
-		console.log("hoverin");
 		var $target = $(event.target);
 		
+		var yoffset;
+		if (($target.position().top - $(window).scrollTop()) < ($(window).height() / 2)) {
+			$(".topCaret").show();
+			$(".bottomCaret").hide();
+			yoffset = $target.height() - parseInt($(".bottomCaret").css("border-bottom-width"));
+		} else {
+			$(".topCaret").hide();
+			$(".bottomCaret").show();
+			yoffset = -$tiphover.height() + parseInt($(".topCaret").css("border-top-width"));
+		}
+
 		$tiphover.show();
-		$tiphover.css("bottom", $target.position().top);
-		$tiphover.css("left", $target.position().left);
-		$tiphover.text($target.data("tip-text"));
+		$tiphover.css("top", $target.position().top + yoffset);
+		$tiphover.css("left", $target.position().left - ($tiphover.outerWidth() / 2) + ($target.outerWidth(true) / 2));
+		$tiphover.find(".tiphover").text($target.data("tip-text"));
 	});
 
-	$(".tip").mouseout(function() {
+	$(".tip").mouseout(function(event) {
 		$tiphover.hide();
 	});
 };
 
 var plotPoint = function(x, y) {
-	console.log("x: " + x + " y: " + y);
 	var $newPlotPoint = $("<div />").addClass("kill");
 	$newPlotPoint.css("left", x * xScaling);
 	$newPlotPoint.css("bottom", y * yScaling);
