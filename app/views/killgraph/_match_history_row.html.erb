@@ -1,31 +1,35 @@
-<% creepScore ||= 1 %>
-
-<div class='matchBox matchWin'>
+<div class='matchBox <%= match_details[:match_victory] ? 'matchWin' : 'matchLose' %>'>
 	<div class='matchHeader'>
 		<div class='matchType'>
-			Ranked Solo
+			<%= match_details[:match_type] %>
 		</div>
 		<div class='matchResult'>
-			Victory
+			<%= match_details[:match_time] %>
+			<% if (match_details[:match_victory]) %>
+				Victory
+			<% else %>
+				Defeat
+			<% end %>
 		</div>
 	</div>
 	<div class='matchDetails'>
 		<div class='champInfo'>
 			<div class='champPortrait'>
+				<!-- TODO decide based on champ -->
 			</div>
 			<span><%= summoner_name %></span>
 		</div>
 		<div class='summonerSpells'>
-			<div class='spell tip'>
+			<% summoner_spells.each do |spell| %>
+			<div class='spell tip' data-tip-text='<b><%= spell[:name] %></b> <br> <%= spell[:description] %>'>
 			</div>
-			<div class='spell tip'>
-			</div>
+			<% end %>
 		</div>
 		<div class='killInfo'>
 			<div class='kda'>
 				<span><%= kills %></span>
 				 / 
-				<span><%= deaths %></span>
+				<span class='deaths'><%= deaths %></span>
 				 / 
 				<span><%= assists %></span>
 			</div>
@@ -42,18 +46,20 @@
 			<div class='charLevel'>
 				Level <span><%= level %></span>
 			</div>
-			<div class='csStats tip' data-tip-text="all by myself">
-				<span>CS <%= creepScore %></span>
+			<div class='csStats tip' data-tip-text="<%= creep_score[:minions] %> minions and <%= creep_score[:monsters] %> monsters">
+				CS <span><%= creep_score[:minions] + creep_score[:monsters] %></span>
 			</div>
-
+			<div class='goldEarned'>
+				<span><%= (gold_earned.to_f/1000).round(1) %>k<span> Gold
+			</div>
 		</div>
 		<div class='items'>
 			<% items.each do |item| %>
-				<div class='item tip' data-tip-text="whatever"></div>
+				<div class='item tip' data-tip-text="<%= item[:description] %>"></div>
 			<% end %>
 		</div>
 		<div class='itemsTrinket'>
-			<div class='item tip'></div>
+			<div class='item tip' data-tip-text="<%= trinket[:description] %>"></div>
 			<span>Trinket</span>
 		</div>
 		<div class='teams'>

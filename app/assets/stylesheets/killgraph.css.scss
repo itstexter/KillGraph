@@ -4,6 +4,7 @@
 
 $font-family-sans-serif-alt: "Roboto";
 $match-height: 150px;
+$tip-background-color: indigo;
 /* http://ddragon.leagueoflegends.com/cdn/5.1.1/img/item/ */
 
 body {
@@ -78,7 +79,7 @@ body {
 }
 
 .matchLose {
-
+	background: rgb(235, 198, 195);
 }
 
 .matchWin {
@@ -92,6 +93,10 @@ body {
 
 .matchBox.matchWin > .matchHeader{
 	background: #a0cfee;
+}
+
+.matchBox.matchLose > .matchHeader{
+	background: rgb(228, 180, 176);
 }
 
 .matchDetails{
@@ -121,10 +126,16 @@ body {
 	height: 55px;
 	width: 55px;
 	border-radius: 55px;
+	background-color: black;
 	background-image: url('http://sf.op.gg/images/champions/garen_square_0.png');
 	background-size: 55px;
 	margin: 0 auto;
 	margin-bottom: 10px;
+}
+
+.matchDetails .champInfo {
+	text-align: center;
+	padding-left: 10px;
 }
 
 .itemsTrinket {
@@ -140,20 +151,23 @@ body {
 .spell {
 	height: 27px;
 	width: 27px;
+	background-color: black;
 	background-image: url('http://sf.op.gg/images/lol/spell/SummonerSmite.png');
 	background-size: 27px;
 	border-radius: 4px;
 	margin-bottom: 5px;
 }
 
-.miscInfo, .killInfo {
+.miscInfo > div, .killInfo > div {
 	text-align: center;
+	margin-bottom: 3px
 }
 
 .item {
 	display: inline-block;
 	width: 32px;
 	height: 32px;
+	background-color: black;
 	background-image: url('http://sf.op.gg/images/lol/spell/SummonerSmite.png');
 	background-size: 32px;
 	border-radius: 5px;
@@ -175,6 +189,7 @@ body {
 .champIcon {
 	width: 16px;
 	height: 16px;
+	background-color: black;
 	background-image: url('http://sf.op.gg/images/champions/garen_square_0.png');
 	background-size: 16px;
 	border-radius: 2px;
@@ -183,7 +198,7 @@ body {
 .topCaret {
 	height: 0px;
 	width: 0px;
-	border: 10px solid purple;
+	border: 10px solid $tip-background-color;
 	border-left-color: transparent;
 	border-right-color: transparent;
 	border-top-width: 0;
@@ -193,7 +208,7 @@ body {
 .bottomCaret {
 	height: 0px;
 	width: 0px;
-	border: 10px solid purple;
+	border: 10px solid $tip-background-color;
 	border-left-color: transparent;
 	border-right-color: transparent;
 	border-bottom-width: 0;
@@ -205,10 +220,28 @@ body {
 	padding: 5px;
 	max-width: 300px;
 	border-radius: 5px;
-	background: purple;
+	background: $tip-background-color;
 }
 
 .tiphoverContainer {
 	position: absolute;
 	z-index: 10
+}
+
+.deaths {
+	color: red;
+}
+
+.summonerName {
+	width: 80px;
+}
+
+.summonerName a {
+	color: black;
+	text-decoration: none;
+}
+
+.team {
+	width: 100px;
+	overflow: hidden;
 }

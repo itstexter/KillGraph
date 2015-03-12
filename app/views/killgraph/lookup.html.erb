@@ -1,7 +1,7 @@
 <div class='tiphoverContainer' style="display: none">
 	<div class="topCaret" style="display: none"></div>
 	<div class='tiphover'>
-		jelkajrleja jlkaere kaerjke eaer ae aelkrae kaejrka ek aer aejrakle rkle aler kla ejrkjae a
+		tip
 	</div>
 
 	<div class="bottomCaret" style="display: none"></div>
@@ -11,12 +11,13 @@
 	<h1>
 		KillGraph
 	</h1>
-	<div class="map">
-	</div>
-	<div class="match_history">
-	</div>
-	<span class="username" data-username="<%= @username %>"></span>
-	<h2>
-		<%= @data %>
-	</h2>
+	<% if @is_valid_user %>
+		<span class="username" data-username="<%= @username %>"></span>
+		<div class="map">
+		</div>
+		<div class="match_history">
+		</div>
+	<% else %>
+		This user does not exist
+	<% end %>
 </div>
