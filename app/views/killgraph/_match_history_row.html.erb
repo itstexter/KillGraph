@@ -1,4 +1,4 @@
-<div class='matchBox <%= match_details[:match_victory] ? 'matchWin' : 'matchLose' %> yay'>
+<div class='matchBox <%= match_details[:match_victory] ? 'matchWin' : 'matchLose' %>' data-match="<%= match_id %>">
 	<div class='matchHeader'>
 		<div class='matchType'>
 			<%= match_details[:match_type] %>

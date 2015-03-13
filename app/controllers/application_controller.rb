@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :set_client
 
   def set_client
-	@client = Lol::Client.new "bc9ba4d5-e50c-41f0-b2f5-d8ab0aeda1b7", {region: "na"}
+	  @client = Lol::Client.new "bc9ba4d5-e50c-41f0-b2f5-d8ab0aeda1b7", {region: "na"}
   end
 end

@@ -1,3 +1,27 @@
+<%
+
+	summoner_name = 'itstexter'
+
+	match_details = {match_victory: true, match_type: "Ranked 5x5", match_time: "38:55"}
+	summoner_spells = [{name: 'Flash', description: 'Move a distance',},
+	 {name: 'Smite', description: 'Damage a minion'}]
+	gold_earned = 12648
+	creep_score = {minions: 133, monsters: 32}
+	team_1_players = ['ItsTexter', 'ucbStirlingfffffff', 'TweePop', 'Echennial', 'Lord Derek']
+	team_2_players = ['cinnamondolce', 'elane4lyfe', 'edizzle', 'tayswif', 'Lord Elaine']
+	items = [{name: 'item0', description: '<b>Boots of Swiftness</b> <br> +30 Movement Speed'},
+	 {name: 'item1', description: '<b>Long Sword</b> <br> +10 Attack Damage'},
+	 {name: 'item2', description: '<b>Amplifying Tomb</b> <br> +15 Ability Power'},
+	 {name: 'item3', description: '<b>UUUUUOOOOOHHHHHH</b>'},
+	 {name: 'item4', description: '<i>Potato</i>'},
+	 {name: 'item5', description: '<b>HIIMDAISY</b>'}]
+
+	trinket = {name: 'Scrying Orb', description: '<b>Scrying Orb</b> <br> Reveal an area for 15 seconds'}
+
+%>
+
+<%= @kill_events_by_match.keys.length %>
+
 <div class='tiphoverContainer' style="display: none">
 	<div class="topCaret" style="display: none"></div>
 	<div class='tiphover'>
@@ -12,10 +36,35 @@
 		KillGraph
 	</h1>
 	<% if @is_valid_user %>
-		<span class="username" data-username="<%= @username %>"></span>
 		<div class="map">
+			<% @kill_events_by_match.each do |match_id, kill_events| %>
+				<div class="matchCoordinatesContainer<%= match_id %>">
+					<% kill_events.each do |kill_event| %>
+						<% x_position = kill_event['position']['x'] %>
+						<% y_position = kill_event['position']['y'] %>
+						<div class="coordinate" data-x="<%= x_position %>" data-y="<%= y_position %>" data-match="<%= match_id %>"></div>
+					<% end %>
+				</div>
+			<% end %>
 		</div>
 		<div class="match_history">
+			<% @matches_to_display.each do |match| %>
+				<%= render partial: "killgraph/match_history_row",
+									 locals: { match_id: match["matchId"],
+									 					 match_details: match_details,
+									 		       summoner_name: summoner_name,
+									 		       summoner_spells: summoner_spells,
+									 		       kills: 5,
+									 		       deaths: 3,
+									 		       assists: 17,
+									 		       level: 13,
+									 		       creep_score: creep_score,
+									 		       gold_earned: gold_earned,
+									 		       items: items,
+									 		       trinket: trinket,
+									 		       team_1_players: team_1_players,
+									 		       team_2_players: team_2_players } %>
+			<% end %>
 		</div>
 	<% else %>
 		This user does not exist
