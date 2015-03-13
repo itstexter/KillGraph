@@ -1,4 +1,4 @@
-<div class='matchBox <%= match_details[:match_victory] ? 'matchWin' : 'matchLose' %>'>
+<div class='matchBox <%= match_details[:match_victory] ? 'matchWin' : 'matchLose' %> yay'>
 	<div class='matchHeader'>
 		<div class='matchType'>
 			<%= match_details[:match_type] %>
@@ -28,9 +28,9 @@
 		<div class='killInfo'>
 			<div class='kda'>
 				<span><%= kills %></span>
-				 / 
+				 /
 				<span class='deaths'><%= deaths %></span>
-				 / 
+				 /
 				<span><%= assists %></span>
 			</div>
 			<div class='kdaRatio'>
