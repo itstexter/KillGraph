@@ -1,7 +1,7 @@
 PATH
-  remote: ../ruby-lol
+  remote: ./lib/ruby-lol
   specs:
-    ruby-lol (0.9.19)
+    ruby-lol (0.10.0)
       activesupport
       httparty
       redis
