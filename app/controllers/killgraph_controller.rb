@@ -7,14 +7,30 @@ class KillgraphController < ApplicationController
 	end
 
 	def lookup
-		@username = params[:username]
+		@username = params[:username].downcase.gsub(' ', '')
+
+		user = User.where(summoner_name: @username).first
+
+		@is_valid_user = false
+		@kill_events_by_match = {}
+		@matches_to_display = []
+
+		if user.blank?
+			begin
+				summoner = @client.summoner.by_name(@username).first
+			rescue Exception => e
+				logger.error "no user"
+				return
+			end
+			user = User.create(summoner_id: summoner.id, summoner_name: summoner.name.downcase.gsub(' ', ''), display_name: summoner.name)
+		end
+
+		summoner_id = user.summoner_id
 
 		@is_valid_user = true
 
 		# Go ahead and grab user match data
-		summoner_id = @client.summoner.by_name(@username).first.id
 		matches = @client.match_history.get(summoner_id)['matches']
-		@kill_events_by_match = {}
 		@matches_to_display = matches.first(4)
 		@matches_to_display.each do |match|
 			matchId = match["matchId"]
